@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :users, only: [:show]
+  resources :spaces
 
   root 'pages#home'
-
-  get 'pages/home'
 
   devise_for :users,
              :path => '',
