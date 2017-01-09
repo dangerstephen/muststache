@@ -1,6 +1,6 @@
 class CreateSpaces < ActiveRecord::Migration[5.0]
   def change
-    create_table :storages do |t|
+    create_table :spaces do |t|
       t.string :location
       t.string :size
       t.boolean :available
