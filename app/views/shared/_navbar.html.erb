@@ -20,7 +20,7 @@
                   <% if current_user.image? %>
                   <%= image_tag current_user.image, class: "img-circle avatar-small" %>
                   <% else %>
-                  <%= image_tag current_user.avatar.url, class: "img-circle avatar-small" %>
+                  <%= image_tag current_user.avatar, class: "img-circle avatar-small" %>
                   <% end %>
 
                 <%= current_user.fullname %> <span class="caret"></span></a>
