@@ -3,7 +3,7 @@ class Space < ApplicationRecord
 
   validates :location, presence: true
   validates :size, presence: true
-  validates :type, presence: true
+  validates :space_type, presence: true
   validates :description, presence: true, length: { maximum: 500 }
   validates :price, presence: true
   validates :title, presence: true, length: { maximum: 50 }

@@ -3,7 +3,7 @@ class SpacesController < ApplicationController
   before_action :authenticate_user!, expect: [:show]
 
   def index
-    @spaces = current_user.rooms
+    @spaces = current_user.spaces
   end
 
   def show
@@ -21,6 +21,7 @@ class SpacesController < ApplicationController
     else
       render :new
     end
+  end
 
   def edit
   end
@@ -43,8 +44,7 @@ class SpacesController < ApplicationController
   end
 
   def spaces_params
-    params.require(:space).permit(:location, :size, :available, :type, :description, :price, :title)
+    params.require(:space).permit(:location, :size, :available, :space_type, :description, :price, :title)
   end
-
 
 end
