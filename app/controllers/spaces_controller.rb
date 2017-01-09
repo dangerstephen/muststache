@@ -7,6 +7,7 @@ class SpacesController < ApplicationController
   end
 
   def show
+    @photos = @space.photos
   end
 
   def new
@@ -17,20 +18,36 @@ class SpacesController < ApplicationController
     @space = current_user.spaces.create(spaces_params)
 
     if @space.save
-      redirect_to @space, notice: "Saved!"
+      if params[:images]
+        params[:images].each do |image|
+          @space.photos.create(image: image)
+        end
+      end
+      @photos = @space.photos
+      redirect_to edit_space_path(@space), notice: "Saved!"
     else
       render :new
     end
   end
 
   def edit
+    if current_user.id == @space.user.id
+    @photo = @space.photos
+  else
+    redirect_to root_path, notice: "You dont have permission!"
   end
 
   def update
-    if @space.save
-      redirect_to @space, notice: "Updated!"
+    if @space.update(spaces_params)
+        if params[:images]
+          params[:images].each do |image|
+            @space.photos.create(image: image)
+          end
+        end
+
+        redirect_to edit_space_path(@space), notice: "Updated!"
     else
-      render :update
+      render :edit
     end
   end
 
