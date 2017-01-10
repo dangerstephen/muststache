@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   resources :users, only: [:show]
   resources :spaces
   resources :photos
+  resources :spaces do
+  resources :reservations, only: [:create]
+  end
   resources :conversations do
-    resources :messages
+  resources :messages
   end
 
-  root 'pages#home'
 
   devise_for :users,
              :path => '',

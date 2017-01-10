@@ -10,7 +10,10 @@
       <%= f.text_field :location, placeholder: "Location" %>
       <%= f.number_field :price, placeholder: "Price" %>
       <%= file_field_tag "images[]", type: :file, multipart: true%>
-      <%= render "photos/list" %>
+
+      <div id="photos"> 
+        <%= render "photos/list" %>
+      </div>
       <%= f.submit "Save", class: "btn btn-primary"%>
     <% end %>
   </div>
