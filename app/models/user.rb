@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :spaces
   has_many :reservations
+  has_many :conversations, :foreign_key => :sender_id
 
   def self.from_omniauth(auth)
   user = User.where(email: auth.info.email).first

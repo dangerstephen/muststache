@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   resources :spaces
   resources :photos
   resources :spaces do
-  resources :reservations, only: [:create]
+    resources :reservations, only: [:create]
   end
   resources :conversations do
-  resources :messages
+    resources :messages
   end
 
 
