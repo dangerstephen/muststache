@@ -4,7 +4,7 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.string :location
       t.string :size
       t.boolean :available
-      t.string :type
+      t.string :space_type
       t.text :description
       t.float :price
       t.string :title

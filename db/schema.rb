@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170109204306) do
     t.string   "location"
     t.string   "size"
     t.boolean  "available"
-    t.string   "type"
+    t.string   "space_type"
     t.text     "description"
     t.float    "price"
     t.string   "title"
