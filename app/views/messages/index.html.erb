@@ -1,33 +1,43 @@
-<% if @over_ten %>
-   <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
+<div class="row">
 
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= user.fullname %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+	<div class="col-md-3 text-center">
+		<% if current_user.image? %>
+		<%= image_tag current_user.image, class: "img-circle avatar-small" %>
+		<% else %>
+		<%= image_tag current_user.avatar, class: "img-circle avatar-small" %>
+		<% end %>
+		<strong><%= @other.fullname %></strong>
+		<%= link_to "View Profile", @other, class: "btn btn-default wide" %>
+	</div>
+
+	<div class="col-md-9">
+
+		<div class="panel panel-default">
+
+				Conversation with <%= @other.fullname %>
+
+			<div class="panel-body">
+				<div class="container">
+
+					<%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
+						<div class="form-group">
+							<%= f.text_area :body, placeholder: "Add a personal message", class: "form-control" %>
+						</div>
+						<%= f.hidden_field :user_id, value: current_user.id %>
+
+						<div class="actions">
+							<%= f.submit "Send Message", class: "btn btn-primary" %>
+						</div>
+					<% end %>
+
+				</div>
+			</div>
+		</div>
+
+<div class="chat">
+			<%= render @messages, locals: {conversation: @conversation} %>
 </div>
 
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
-  </div>
+	</div>
 
-<% end %>
+</div>
