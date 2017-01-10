@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @reservation = current_user.reservations.create(reservation_params)
-    redirect_to @reservation.space
+    redirect_to @reservation.space, notice: "Space reserved!"
   end
 
   private
