@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :spaces
   resources :photos
+  resources :conversations do
+    resources :messages
+  end
 
   root 'pages#home'
 
