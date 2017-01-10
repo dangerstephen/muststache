@@ -1,35 +1,34 @@
 class MessagesController < ApplicationController
-  before_action do
-   @conversation = Conversation.find(params[:conversation_id])
-  end
-def index
- @messages = @conversation.messages
-  if @messages.length > 10
-   @over_ten = true
-   @messages = @messages[-10..-1]
-  end
-  if params[:m]
-   @over_ten = false
-   @messages = @conversation.messages
-  end
- if @messages.last
-  if @messages.last.user_id != current_user.id
-   @messages.last.read = true;
-  end
- end
-@message = @conversation.messages.new
- end
-def new
- @message = @conversation.messages.new
-end
-def create
- @message = @conversation.messages.new(message_params)
- if @message.save
-  redirect_to conversation_messages_path(@conversation)
- end
-end
-private
- def message_params
-  params.require(:message).permit(:body, :user_id)
- end
+  before_action :authenticate_user!
+	before_action :set_conversation
+
+	def index
+		if current_user == @conversation.sender || current_user == @conversation.recipient
+			@other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+			@messages = @conversation.messages.order("created_at DESC")
+		else
+			redirect_to conversations_path, alert: "You don't have permission to view this."
+		end
+	end
+
+	def create
+		@message = @conversation.messages.new(message_params)
+		@messages = @conversation.messages.order("created_at DESC")
+
+		if @message.save
+      respond_to do |format|
+        format.js
+      end
+		end
+	end
+
+	private
+
+		def set_conversation
+			@conversation = Conversation.find(params[:conversation_id])
+		end
+
+		def message_params
+			params.require(:message).permit(:body, :user_id)
+		end
 end

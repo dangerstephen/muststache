@@ -1,0 +1,16 @@
+	<div class="panel">
+		<div class="panel-body">
+			<% if current_user.image? %>
+			<%= image_tag current_user.image, class: "img-circle avatar-small" %>
+			<% else %>
+			<%= image_tag current_user.avatar, class: "img-circle avatar-small" %>
+			<% end %>
+			<strong><%= message.user.fullname %></strong>
+
+			<span class="pull-right"><%= message.message_time %></span>
+			<br>
+			<div class="row-space-2">
+				<%= message.body %>
+			</div>
+		</div>
+	</div>
