@@ -27,14 +27,15 @@ class SpacesController < ApplicationController
       redirect_to edit_space_path(@space), notice: "Saved!"
     else
       render :new
+      end
     end
-  end
 
   def edit
     if current_user.id == @space.user.id
-    @photo = @space.photos
+    @photos = @space.photos
   else
     redirect_to root_path, notice: "You dont have permission!"
+    end
   end
 
   def update
