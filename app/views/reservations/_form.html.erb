@@ -1,7 +1,7 @@
 
       <%= form_for ([@space, @space.reservations.new]) do |f| %>
-      <%= f.text_field :start_date %>
-      <%= f.text_field :end_date %>
+      <%= f.text_field :start_date, placeholder: "Start Date", class: "form-group" %>
+      <%= f.text_field :end_date, placeholder: "End Date", class: "form-group" %>
       <%= f.hidden_field :space_id, value: @space.id %>
       <%= f.hidden_field :price, value: @space.price %>
       <br>

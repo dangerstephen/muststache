@@ -1,101 +1,39 @@
 <div class="panel panel-default">
 	<div class="panel-body">
-
-		<!-- Image -->
 		<div class="row">
 			<div class="col-md-12">
 				<%= image_tag @photos[0].image.url(), class: "img-responsive" if @photos.length > 0 %>
 			</div>
 		</div>
-
-		<br>
-
-		<!-- Main Info -->
-		<div class="row">
-			<div class="col-md-8">
 				<div class="row">
-					<div class="col-md-3 text-center">
-						<%= @space.user.fullname %>
-					</div>
-
 					<div class="col-md-9">
-						<h4><%= @space.space_type %></h4>
-						<%= @space.location %>
-
-						<div class="row text-center row-space-1">
-							<div class="col-sm-3">
-								<i class="fa fa-home fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-users fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-bed fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-ship fa-2x"></i>
-							</div>
-						</div>
-
-						<div class="row text-center">
-							<div class="col-sm-3">
-
-							</div>
-						</div>
-
+						<h2>About This Listing</h2>
+						<h4>Owner: <%= @space.user.fullname %></h4>
+						<h4>Type: <%= @space.space_type %></h4>
+						<h4>Description: <%= @space.description %></h4>
+						<h4>Location: <%= @space.location %></h4>
 					</div>
 				</div>
-			</div>
 
-			<div class="col-md-4">
-				<!-- Reservation form -->
-				<%= render 'reservations/form' %>
-			</div>
-		</div>
+		<%= render 'reservations/form' %>
 
-		<!-- About -->
-		<div class="row">
-			<div class="col-md-12">
-				<h2>About This Listing</h2>
-				<p><%= @space.description %></p>
-			</div>
-		</div>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1P4QHvrlDOx_y6FoDan-UWIMmGnazUh4&callback=initMap"></script>
 
 
-
-		<!-- <div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-					<% if @photos %>
-				    <ol class="carousel-indicators">
-							<% @photos.each do |photo| %>
-								<li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
-							<% end %>
-						</ol>
-					<% end %>
-
-				  <div class="carousel-inner" role="listbox">
-				    <% if @photos %>
-							<% @photos.each do |photo| %>
-								<div class="item <%= 'active' if photo.id == @photos[0].id %>">
-				          <%= image_tag photo.image.url() %>
-				        </div>
-							<% end %>
-						<% end %>
-				  </div>
-
-				  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				    <span class="sr-only">Previous</span>
-				  </a>
-				  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				    <span class="sr-only">Next</span>
-				  </a>
-				</div>
-			</div>
-		</div> -->
 
 
 	</div>
