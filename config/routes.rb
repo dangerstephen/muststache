@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :spaces
   resources :photos
+  resources :spaces do
+    resources :reservations, only: [:create]
+  end
 
   root 'pages#home'
 

@@ -1,7 +1,8 @@
 class Space < ApplicationRecord
   belongs_to :user
   has_many   :photos
-  
+  has_many :reservations
+
   validates :location, presence: true
   validates :size, presence: true
   validates :space_type, presence: true
