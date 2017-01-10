@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   resources :users, only: [:show]
   resources :spaces
   resources :photos
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   resources :messages
   end
 
-  root 'pages#home'
 
   devise_for :users,
              :path => '',
