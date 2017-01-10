@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :spaces
+  resources :photos
 
   root 'pages#home'
 
