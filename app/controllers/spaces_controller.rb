@@ -3,10 +3,11 @@ class SpacesController < ApplicationController
   before_action :authenticate_user!, expect: [:show]
 
   def index
-    @spaces = current_user.rooms
+    @spaces = current_user.spaces
   end
 
   def show
+    @photos = @space.photos
   end
 
   def new
@@ -17,19 +18,37 @@ class SpacesController < ApplicationController
     @space = current_user.spaces.create(spaces_params)
 
     if @space.save
-      redirect_to @space, notice: "Saved!"
+      if params[:images]
+        params[:images].each do |image|
+          @space.photos.create(image: image)
+        end
+      end
+      @photos = @space.photos
+      redirect_to edit_space_path(@space), notice: "Saved!"
     else
       render :new
+      end
     end
 
   def edit
+    if current_user.id == @space.user.id
+    @photos = @space.photos
+  else
+    redirect_to root_path, notice: "You dont have permission!"
+    end
   end
 
   def update
-    if @space.save
-      redirect_to @space, notice: "Updated!"
+    if @space.update(spaces_params)
+        if params[:images]
+          params[:images].each do |image|
+            @space.photos.create(image: image)
+          end
+        end
+
+        redirect_to edit_space_path(@space), notice: "Updated!"
     else
-      render :update
+      render :edit
     end
   end
 
@@ -43,8 +62,7 @@ class SpacesController < ApplicationController
   end
 
   def spaces_params
-    params.require(:space).permit(:location, :size, :available, :type, :description, :price, :title)
+    params.require(:space).permit(:location, :size, :available, :space_type, :description, :price, :title)
   end
-
 
 end
