@@ -27,6 +27,7 @@ gem 'thin'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
 
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end

@@ -15,7 +15,6 @@
       <%= f.hidden_field :space_id, value: @space.id %>
       <%= f.hidden_field :price, value: @space.price %>
       <%= f.hidden_field :total, id: 'reservation_total' %>
-
       <%= f.submit "Book Space", class: "btn btn-primary" %>
 
       <h4><span id="message"> </span></h4>
@@ -29,7 +28,7 @@
             </tr>
             <tr>
               <td>Total</td>
-              <td><span id="reservation_sum"></span></td>
+              <td>$<span id="reservation_sum"></span></td>
             </tr>
           </tbody>
         </table>
@@ -66,19 +65,10 @@
       					onSelect: function(selected) {
       						$('#reservation_end_date').datepicker("option", "minDate", selected);
       						$('#reservation_end_date').attr('disabled', false);
-      					}
-      				});
 
-      				$('#reservation_end_date').datepicker({
-      					dateFormat: 'dd-mm-yy',
-      					minDate: 0,
-      					maxDate: '3m',
-      					beforeShowDay: unavailable,
-      					onSelect: function(selected) {
-      						$('#reservation_start_date').datepicker("option", "maxDate", selected);
-
-                  var start_date = 	$('#reservation_end_date').datepicker('getDate');
-                  var end_date = 	$(this).datepicker('getDate');
+                  var start_date = 	$(this).datepicker('getDate');
+                  var end_date = 	$('#reservation_end_date').datepicker('getDate');
+                  var days = (end_date - start_date)/1000/60/60/24 + 1
 
                   var input = {
                     'start_date': start_date,
@@ -98,6 +88,53 @@
                         $('#message').text("This data range is OK.");
                         $('#preview').show();
                         $('#btn_book').attr('disabled', false);
+
+                        var total = days * <%= @space.price %>
+                        $('#reservation_days').text(days);
+                        $('#reservation_sum').text(total);
+                        $('#reservation_total').val(total);
+                      }
+                    }
+                  });
+
+      					}
+      				});
+
+      				$('#reservation_end_date').datepicker({
+      					dateFormat: 'dd-mm-yy',
+      					minDate: 0,
+      					maxDate: '3m',
+      					beforeShowDay: unavailable,
+      					onSelect: function(selected) {
+      						$('#reservation_start_date').datepicker("option", "maxDate", selected);
+
+                  var start_date = 	$('#reservation_start_date').datepicker('getDate');
+                  var end_date = 	$(this).datepicker('getDate');
+                  var days = (end_date - start_date)/1000/60/60/24 + 1
+
+                  var input = {
+                    'start_date': start_date,
+                    'end_date': end_date,
+                    'space_id': <%= @space.id %>
+                  }
+
+                  $.ajax({
+                    url: "/preview",
+                    data: input,
+                    success: function(data){
+                      if(data.conflict){
+                        $('#message').text("This data range is not available.");
+                        $('#preview').hide();
+                        $('#btn_book').attr('disabled', true);
+                      } else {
+                        $('#message').text("This data range is OK.");
+                        $('#preview').show();
+                        $('#btn_book').attr('disabled', false);
+
+                        var total = days * <%= @space.price %>
+                        $('#reservation_days').text(days);
+                        $('#reservation_sum').text(total);
+                        $('#reservation_total').val(total);
                       }
                     }
                   });
