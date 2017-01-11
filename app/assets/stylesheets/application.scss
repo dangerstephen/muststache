@@ -2,6 +2,15 @@
 @import "bootstrap";
 @import "jquery-ui/smoothness";
 
+#map {
+  height: 400px;
+  width: 100%;
+}
+body{
+  background-color: #dfdfdf;
+  color: #9d7f66;
+}
+
 .avatar-small {
   width: 28px;
 }
@@ -32,8 +41,56 @@
 .panel-heading.preview img {
   width: 216px;
 }
+.sidebar-list {
+  padding-left: 0;
+  list-style: none;
+}
 
-#map {
- height: 400px;
- width: 100%;
+.sidebar-item {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #82888a;
+  border-bottom: 1px solid #CCC;
+}
+
+.sidebar-link {
+  color: #82888a;
+  text-decoration: none;
+}
+.panel-default .panel-heading {
+  color: #565a5c;
+  background-color: #edefed;
+  font-size: 18px;
+  font-weight: 400
+}
+
+.row-space-1 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.row-space-2 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.row-space-3 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-control {
+  border-radius: 2px;
+  height: 4rem;
+}
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+}
+
+.conversation:hover, .conversation:focus {
+  background-color: #F4F4F5;
 }
