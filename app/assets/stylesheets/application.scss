@@ -1,0 +1,49 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "jquery-ui/smoothness";
+
+.avatar-small {
+  width: 28px;
+}
+
+.spaces-photo {
+  height: 380px;
+  width: 400px;
+}
+
+.user-profile{
+  width: 200px;
+  height: 200px;
+}
+
+.container {
+  width: 80%;
+}
+
+.user-info {
+  text-align: center;
+  border: 1px solid grey;
+}
+
+.panel-heading.preview {
+  padding: 0;
+}
+
+.panel-heading.preview img {
+  width: 216px;
+}
+
+.reservation-table td {
+  width: 100%;
+  border: 1px solid #dce0e0;
+  padding:10px;
+}
+
+.wide {
+  width: 100%;
+}
+
+#map {
+ height: 400px;
+ width: 100%;
+}

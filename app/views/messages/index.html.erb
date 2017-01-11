@@ -1,0 +1,45 @@
+<div class="row">
+
+	<div class="col-md-3 text-center">
+		<% if @other.image? %>
+		<%= image_tag @other.image, class: "img-circle avatar-small" %>
+		<% else %>
+		<%= image_tag @other.avatar, class: "img-circle avatar-small" %>
+		<% end %>
+		<strong><%= @other.fullname %></strong>
+		<%= link_to "View Profile", @other, class: "btn btn-default wide" %>
+	</div>
+
+	<div class="col-md-9">
+
+		<div class="panel panel-default">
+
+				Conversation with <%= @other.fullname %>
+
+			<div class="panel-body">
+				<div class="container">
+
+					<%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
+						<div class="form-group">
+							<%= f.text_area :body, placeholder: "Add a personal message", class: "form-control" %>
+						</div>
+						<%= f.hidden_field :user_id, value: current_user.id %>
+
+						<div class="actions">
+							<%= f.submit "Send Message", class: "btn btn-primary" %>
+						</div>
+					<% end %>
+
+				</div>
+			</div>
+		</div>
+
+<div class="chat">
+			<%= render @messages, locals: {conversation: @conversation} %>
+</div>
+
+	</div>
+
+</div>
+
+<%= subscribe_to conversation_messages_path(@conversation) %>

@@ -16,7 +16,12 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+<<<<<<< HEAD
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+=======
+# Ignore application configuration
+/config/application.yml
+>>>>>>> 6f489970037bb226159062deae4d15838b9dca6c

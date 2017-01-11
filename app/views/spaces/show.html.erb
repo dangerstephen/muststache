@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<%= image_tag @photos[0].image.url(), class: "img-responsive" if @photos.length > 0 %>
+			</div>
+		</div>
+				<div class="row">
+					<div class="col-md-9">
+						<h2>About This Listing</h2>
+						<h4>Owner: <%= @space.user.fullname %></h4>
+						<h4>Type: <%= @space.space_type %></h4>
+						<h4>Description: <%= @space.description %></h4>
+						<h4>Location: <%= @space.location %></h4>
+						<h3>Price per day: <%= @space.price%></h3>
+					</div>
+				</div>
+
+		<%= render 'reservations/form' %>
+
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1P4QHvrlDOx_y6FoDan-UWIMmGnazUh4&callback=initMap"></script>
+
+
+
+
+	</div>
+</div>
