@@ -4,7 +4,10 @@
       <%= f.text_field :end_date, placeholder: "End Date", class: "form-group" %>
       <%= f.hidden_field :space_id, value: @space.id %>
       <%= f.hidden_field :price, value: @space.price %>
-      <br>
+      <%= f.hidden_field :total, id: 'reservation_total' %>
+      <h1>Total: <%=  %></h1>
+
+
       <%= f.submit "Book Space", class: "btn btn-primary" %>
       <% end %>
 
