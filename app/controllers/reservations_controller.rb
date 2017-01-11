@@ -3,7 +3,12 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.create(reservation_params)
-    redirect_to @reservation.space, notice: "Space reserved!"
+
+    if @reservation
+
+    else
+    redirect_to @reservation.space, alert: "error reserving space..."
+    end
   end
 
   private
