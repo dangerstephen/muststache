@@ -26,9 +26,9 @@
 
                 <%= current_user.fullname %> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Your Rentals</a></li>
+                  <li><%= link_to "Your Rental Spaces", spaces_path %></li>
                   <li><a href="#">Wish Lists</a></li>
-                  <li><%= link_to "View Profile", "/" %></li>
+                  <li><%= link_to "View Profile", user_path(current_user) %></li>
                   <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Account Setting</a></li>
