@@ -1,10 +1,10 @@
 <div class="row">
 
 	<div class="col-md-3 text-center">
-		<% if current_user.image? %>
-		<%= image_tag current_user.image, class: "img-circle avatar-small" %>
+		<% if @other.image? %>
+		<%= image_tag @other.image, class: "img-circle avatar-small" %>
 		<% else %>
-		<%= image_tag current_user.avatar, class: "img-circle avatar-small" %>
+		<%= image_tag @other.avatar, class: "img-circle avatar-small" %>
 		<% end %>
 		<strong><%= @other.fullname %></strong>
 		<%= link_to "View Profile", @other, class: "btn btn-default wide" %>
@@ -42,4 +42,4 @@
 
 </div>
 
-<%= subscribe_to conversation_messages_path(@conversation) %> 
+<%= subscribe_to conversation_messages_path(@conversation) %>
