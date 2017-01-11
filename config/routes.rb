@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+    get '/preload' => 'reservations#preload'
+    get '/preview' => 'reservations#preview'
 
   devise_for :users,
              :path => '',
