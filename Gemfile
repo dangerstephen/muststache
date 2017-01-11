@@ -24,6 +24,8 @@ gem 'omniauth-google-oauth2'
 gem 'geocoder'
 gem 'private_pub'
 gem 'thin'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-themes'
 
 group :development, :test do
   gem 'byebug', platform: :mri
