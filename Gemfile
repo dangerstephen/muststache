@@ -22,6 +22,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'geocoder'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-themes'
 
 group :development, :test do
   gem 'byebug', platform: :mri
