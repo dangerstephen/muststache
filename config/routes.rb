@@ -18,4 +18,6 @@ Rails.application.routes.draw do
              :path_names => {:sign_in => 'login', :sign_out => 'logout', :edit => 'profile'},
              :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
+  post '/notify' => 'reservations#notify'
+  post '/your_trips' => 'reservations#your_trips'
 end
