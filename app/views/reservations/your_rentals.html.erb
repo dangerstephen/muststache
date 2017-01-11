@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-10">
+      <h4>Your Rentals</h4><br>
+          </div>
+          <div class="panel-body">
+              <% @rentals.each do |f| %>
+                <div class="row">
+                    <div class="col-md-3">
+                      <div class="row">
+                        <b>Rental date:</b>
+                      </div>
+                      <%= f.start_date.strftime('%v') %>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <b>Picture:</b>
+                      </div>
+                      <%= image_tag f.space.photos[0].image.url(:thumb) %>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <b>Host:</b>
+                      </div>
+                      <%= image_tag image_url(f.space.user), class: "img-circle"%>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <b>Total:</b>
+                      </div>
+                      <h4>$ <%= f.total %></h4>
+                    </div>
+                </div>
+              <% end %>
+    </div>
+</div>

@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
         notify_url: 'http://65f6acd6.ngrok.io/notify',
         amount: @reservation.total,
         item_name: @reservation.space.title,
-        return: 'http://65f6acd6.ngrok.io/your_spaces'
+        return: 'http://65f6acd6.ngrok.io/your_rentals'
       }
 
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
@@ -41,6 +41,7 @@ class ReservationsController < ApplicationController
     end
   end
 
+  protect_from_forgery except: [:notify]
   def notify
     params.permit!
     status = params[:payment_status]
@@ -55,8 +56,9 @@ class ReservationsController < ApplicationController
     render nothing: true
   end
 
-  def your_spaces
-    @spaces = current_user.reservations
+  protect_from_forgery except: [:your_rentals]
+  def your_rentals
+    @rentals = current_user.reservations
   end
 
   private
