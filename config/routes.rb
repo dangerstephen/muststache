@@ -19,5 +19,5 @@ Rails.application.routes.draw do
              :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   post '/notify' => 'reservations#notify'
-  post '/your_trips' => 'reservations#your_trips'
+  post '/your_spaces' => 'reservations#your_spaces'
 end

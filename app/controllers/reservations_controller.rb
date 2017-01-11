@@ -32,9 +32,7 @@ class ReservationsController < ApplicationController
         notify_url: 'http://65f6acd6.ngrok.io/notify',
         amount: @reservation.total,
         item_name: @reservation.space.title,
-        item_number: @reservation.id,
-        quantity: '1',
-        return: 'http://65f6acd6.ngrok.io/your_trips'
+        return: 'http://65f6acd6.ngrok.io/your_spaces'
       }
 
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
@@ -54,8 +52,11 @@ class ReservationsController < ApplicationController
     else
       reservation.destroy
     end
-
     render nothing: true
+  end
+
+  def your_spaces
+    @spaces = current_user.reservations
   end
 
   private
