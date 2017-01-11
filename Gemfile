@@ -22,6 +22,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'geocoder'
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug', platform: :mri
