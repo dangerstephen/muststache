@@ -1,0 +1,64 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <% if @all_photos %>
+      <ol class="carousel-indicators">
+        <% @all_photos.each do |photo| %>
+        <li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
+        <% end %>
+      </ol>
+      <% end %>
+
+      <div class="carousel-inner" role="listbox">
+        <% if @all_photos %>
+        <% @all_photos.each do |photo| %>
+        <div class="item <%= 'active' if photo.id == @all_photos[0].id %>">
+          <%= image_tag photo.image.url(), class: "large" %>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+  </div>
+</div>

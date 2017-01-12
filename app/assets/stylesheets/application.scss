@@ -86,3 +86,12 @@ body {
 .conversation:hover, .conversation:focus {
   background-color: #F4F4F5;
 }
+
+.large {
+  width: 500px !important;
+  height: 400px !important;
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
