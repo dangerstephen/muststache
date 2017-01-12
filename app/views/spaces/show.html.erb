@@ -3,22 +3,44 @@
 	<h2><%= @space.title %></h2>
 </div>
 	<div class="panel-body">
-		<!-- Image -->
 		<div class="row">
-			<div class="col-md-12">
-				<%= image_tag @photos[0].image.url(), class: "img-responsive" if @photos.length > 0 %>
+			<div class="col-md-10 col-md-offset-1">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<% if @photos %>
+					<ol class="carousel-indicators">
+						<% @photos.each do |photo| %>
+						<li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
+						<% end %>
+					</ol>
+					<% end %>
+
+					<div class="carousel-inner" role="listbox">
+						<% if @photos %>
+						<% @photos.each do |photo| %>
+						<div class="item <%= 'active' if photo.id == @photos[0].id %>">
+							<%= image_tag photo.image.url() %>
+						</div>
+						<% end %>
+						<% end %>
+					</div>
+
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
 			</div>
-		</div>
-
-		<br>
-
-		<!-- Main Info -->
+		</div><br>
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="row">
 					<div class="col-md-offset-2 col-md-3">
 						<%= image_tag @space.user.avatar(:thumb), class: "img-circle user-profile" %><br><br>
-						<%= @space.user.fullname %>
+						Host: <%= link_to @space.user.fullname %>
 					</div>
 
 					<div class="col-md-6">
@@ -34,53 +56,11 @@
 		</div>
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10 text-center">
-				<!-- Reservation form -->
 				<%= render 'reservations/form' %>
 			</div>
 			</div>
-
-
-
-		<!-- Carousel -->
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-					<% if @photos %>
-						<!-- Indicators -->
-				    <ol class="carousel-indicators">
-							<% @photos.each do |photo| %>
-								<li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
-							<% end %>
-						</ol>
-					<% end %>
-
-				  <div class="carousel-inner" role="listbox">
-				    <% if @photos %>
-							<% @photos.each do |photo| %>
-								<div class="item <%= 'active' if photo.id == @photos[0].id %>">
-				          <%= image_tag photo.image.url() %>
-				        </div>
-							<% end %>
-						<% end %>
-				  </div>
-
-				  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				    <span class="sr-only">Previous</span>
-				  </a>
-				  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				    <span class="sr-only">Next</span>
-				  </a>
-				</div>
-			</div>
-		</div>
-
 		<br>
 		<hr>
-
-
     <div id="map"></div>
     <script>
       function initMap() {
@@ -97,8 +77,6 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1P4QHvrlDOx_y6FoDan-UWIMmGnazUh4&callback=initMap"></script>
 
-
-		<!-- Close by Spaces -->
 		<h3>Near by</h3>
 		<div class="row">
 			<% for space in @space.nearbys(10) %>
@@ -114,13 +92,7 @@
 						</div>
 					</div>
 				</div>
-
 			<% end %>
 		</div>
-
-
-
-
-
 	</div>
 </div>
