@@ -1,9 +1,9 @@
 <div class="row">
 <div class="col-md-3">
   <ul class="sidebar-list">
-    <li class="sidebar-item"><%= link_to "Your Spaces", spaces_path, class: "sidebar-link active" %></li>
-    <li class="sidebar-item"><%= link_to "Your Reservations", spaces_path, class: "sidebar-link" %></li>
-    <li class="sidebar-item"><%= link_to "Your Rentals", rentals_path, class: "sidebar-link" %></li>
+    <li class="sidebar-item"><%= link_to "Your Spaces", spaces_path, class: "sidebar-link" %></li>
+    <li class="sidebar-item"><%= link_to "Your Reservations", your_reservations_path, class: "sidebar-link" %></li>
+    <li class="sidebar-item"><%= link_to "Your Rentals", rentals_path, class: "sidebar-link active" %></li>
   </ul>
 </div>
 
@@ -23,13 +23,17 @@
                       <div class="row">
                         <b>Picture:</b>
                       </div>
+                      <%= link_to space_path(f.space) do %>
                       <%= image_tag f.space.photos[0].image.url(:thumb) %>
+                      <% end %>
                     </div>
                     <div class="col-md-3">
                       <div class="row">
                         <b>Host:</b>
                       </div>
+                      <%= link_to user_path(f.space.user) do %>
                       <%= image_tag f.space.user.avatar(:thumb)%>
+                      <% end %>
                     </div>
                     <div class="col-md-3">
                       <div class="row">
