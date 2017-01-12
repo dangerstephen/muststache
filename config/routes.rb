@@ -18,7 +18,7 @@ Rails.application.routes.draw do
              :path_names => {:sign_in => 'login', :sign_out => 'logout', :edit => 'profile'},
              :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
-  get '/your_rentals' => 'reservations#your_rentals'
+  get '/your_rentals' => 'reservations#your_rentals', as: 'rentals'
   get '/your_reservations' => 'reservations#your_reservations'
 
   post '/notify' => 'reservations#notify'
