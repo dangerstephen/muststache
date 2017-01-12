@@ -24,13 +24,17 @@
                       <div class="row">
                         <b>Picture:</b>
                       </div>
+                      <%= link_to space_path(f.space) do %>
                       <%= image_tag space.photos[0].image.url(:thumb) %>
+                      <% end %>
                     </div>
                     <div class="col-md-3">
                       <div class="row">
                         <b>Guest:</b>
                       </div>
+                      <%= link_to user_path(f.user) do %>
                       <%= image_tag f.user.avatar(:thumb)%>
+                      <% end %>
                     </div>
                     <div class="col-md-3">
                       <div class="row">
