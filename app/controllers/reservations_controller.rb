@@ -61,6 +61,10 @@ class ReservationsController < ApplicationController
     @rentals = current_user.reservations
   end
 
+  def your_reservations
+    @spaces = current_user.spaces
+  end
+
   private
   def is_conflict(start_date, end_date)
     space = Space.find(params[:space_id])
