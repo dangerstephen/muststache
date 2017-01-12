@@ -1,11 +1,6 @@
 <div class="row">
 
 	<div class="col-md-3 text-center">
-		<% if @other.image? %>
-		<%= image_tag @other.image, class: "img-circle avatar-small" %>
-		<% else %>
-		<%= image_tag @other.avatar, class: "img-circle avatar-small" %>
-		<% end %>
 		<strong><%= @other.fullname %></strong>
 		<%= link_to "View Profile", @other, class: "btn btn-default wide" %>
 	</div>
