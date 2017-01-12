@@ -30,10 +30,12 @@
                         <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirm Password", :class => 'form-control' %>
                     </div>
 
-                    <div class="form-group">
-                        Profile Image:
-                        <%= f.file_field :avatar %>
-                    </div>
+                        <div class="form-group">
+                          <span class="btn btn-default btn-file">
+                              <i class="fa fa-cloud-upload fa-lg"></i> Profile Image
+                              <%= f.file_field :avatar, type: :file, multiple: true %>
+                          </span>
+                      </div>
 
                     <div class="actions">
                         <%= f.submit "Save", :class => "btn btn-primary" %>

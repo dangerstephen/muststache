@@ -19,7 +19,7 @@
 							<%= image_tag space.photos[0].image.url(:thumb) if space.photos.length > 0 %>
 						</div>
 						<div class="col-md-7">
-							<h4><%= space.title %></h4>
+							<h4><%= link_to space.title, space %></h4>
 						</div>
 						<div class="col-md-3 right">
 							<%= link_to "Update", edit_space_path(space), class: "btn btn-primary" %>

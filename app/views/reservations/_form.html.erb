@@ -1,4 +1,3 @@
-
       <%= form_for ([@space, @space.reservations.new]) do |f| %>
 
         <div class="row">
@@ -35,7 +34,9 @@
       </div>
 
       <%= f.submit "Book Space", id: "btn_book", class: "btn btn-primary wide", disabled: 'true' %>
+
       <% end %>
+      <br>
 
       <script>
         function unavailable(date){
