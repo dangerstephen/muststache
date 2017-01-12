@@ -11,13 +11,14 @@
         <%= render 'shared/navbar' %>
         <div class="row">
         <div class="col-md-6 col-md-offset-1 text-center">
-
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
-
-        <%= yield %>
-
-        </div>
       </div>
+    </div>
+
+    <div class="container">
+        <%= yield %>
+    </div>
+
     </body>
 </html>
