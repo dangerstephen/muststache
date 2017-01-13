@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :spaces do
     resources :reservations, only: [:create]
   end
-  resources :conversations do
-    resources :messages
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
   end
 
   get '/preload' => 'reservations#preload'

@@ -19,7 +19,7 @@ class SpacesController < ApplicationController
         end
       end
       @photos = @space.photos
-      redirect_to edit_space_path(@space), notice: "Saved!"
+      redirect_to space_path(@space), notice: "Saved!"
     else
       render :new
       end
@@ -38,7 +38,7 @@ class SpacesController < ApplicationController
             @space.photos.create(image: image)
           end
         end
-        redirect_to edit_space_path(@space), notice: "Updated!"
+        redirect_to space_path(@space), notice: "Updated!"
     else
       render :edit
     end
