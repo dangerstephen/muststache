@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   post '/notify' => 'reservations#notify'
   post '/your_rentals' => 'reservations#your_rentals'
 
+  get '/about' => 'pages#about'
+
 end
