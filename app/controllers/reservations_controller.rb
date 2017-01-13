@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
         notify_url: 'http://65f6acd6.ngrok.io/notify',
         amount: @reservation.total,
         item_name: @reservation.space.title,
-        return: 'http://65f6acd6.ngrok.io/your_rentals'
+        return: 'https://muststache.herokuapp.com/your_rentals'
       }
 
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
