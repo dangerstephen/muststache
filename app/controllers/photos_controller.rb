@@ -7,4 +7,8 @@ class PhotosController < ApplicationController
     @photos = Photo.where(space_id: space.id)
     respond_to :js
   end
+
+  def index
+    @all_photos = Photo.all
+  end
 end
