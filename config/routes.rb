@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   devise_for :users,
              :path => '',
              :path_names => {:sign_in => 'login', :sign_out => 'logout', :edit => 'profile'},
-             :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+             :controllers => {:omniauth_callbacks => 'omniauth_callbacks',
+                              :registrations => 'registrations'
+                              }
 
   get '/your_rentals' => 'reservations#your_rentals', as: 'rentals'
   get '/your_reservations' => 'reservations#your_reservations'
