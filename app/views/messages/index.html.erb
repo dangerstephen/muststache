@@ -1,5 +1,6 @@
 <div class="row">
-
+<!--Messaging and conversation functionality is awesome here. Very cool,
+hope you all have a good understanding of in-app messages now -->
 	<div class="col-md-3 text-center">
 		<%= image_tag @other.avatar(:thumb), class:"img-circle" %>
 		<strong><%= @other.fullname %></strong>
@@ -35,7 +36,7 @@
 </div>
 
 	</div>
-
+<!--this is super picky but can you keep the spacing and indents consistent in your view code? -->
 </div>
 
 <%= subscribe_to conversation_messages_path(@conversation) %>

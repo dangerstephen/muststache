@@ -28,4 +28,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
 
+  # I notice the route to /spaces does not go anywhere meaningful in production, ie from the
+  # 'rent' dropdown
+
 end

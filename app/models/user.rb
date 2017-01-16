@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :reservations
   has_many :conversations, :foreign_key => :sender_id
 
+  # very happy that you were able to get both FB and google login done - very useful in the real world!
   def self.from_omniauth(auth)
   user = User.where(email: auth.info.email).first
 
