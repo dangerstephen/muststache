@@ -25,6 +25,11 @@ class ReservationsController < ApplicationController
 
     if @reservation
       # send request to PayPal
+      # not a huge deal but perhaps you should hide your email here?
+      # I do like this redirect to paypal and it is awesome that it is working. This is picky
+      # but some users may be discouraged with redirects, if you could find a more
+      # modern way to do this, without an external redirect, either using PayPal or Stripe,
+      # it might be a smoother UX. Especially for mobile.
       values = {
         business: 'kevin2005tran-facilitator@yahoo.com',
         cmd: '_xclick',
